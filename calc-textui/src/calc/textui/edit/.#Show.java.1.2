@@ -1,0 +1,37 @@
+/** @version $Id: Show.java,v 1.2 2013-11-10 13:57:48 ist172992 Exp $ */
+
+package calc.textui.edit;
+import java.io.IOException;
+
+import static ist.po.ui.Dialog.IO;
+import ist.po.ui.Command;
+import ist.po.ui.DialogException;
+import ist.po.ui.Menu;
+import calc.TableManager;
+import calc.Table;
+import calc.Cell;
+import calc.Content;
+
+
+/**
+ * Show cells command.
+ */
+public class Show extends Command<TableManager> /*FIXME: select superclass parameter */ {
+	/**
+	 * @param receiver
+	 */
+	public Show(TableManager TM) {
+		super(MenuEntry.SHOW, TM);
+	}
+
+	/**
+	 * @see ist.po.ui.Command#execute()
+	 */
+	@Override
+        public final void execute() throws DialogException, IOException {
+               //FIXME: implement command
+               IO.println(Message.addressRequest());
+	      
+        }
+
+}
