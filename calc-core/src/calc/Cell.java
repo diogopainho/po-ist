@@ -1,37 +1,51 @@
-
 package calc;
- 
-public class Cell{
-
+import java.io.Serializable;
+public class Cell implements Serializable{
 private Content content;
+private boolean hasCont = false;
+private boolean deleted = false;
 
 public Cell(){
-content=null;
+content = new Content();
+hasCont = false;
+deleted = false;
 }
 
+public Cell(Content c){
+content = c;
+hasCont = true;
+deleted = false;
+}
 
 public void setContent(Content cont){
-  content=cont;
+content = cont;
+hasCont = true;
+deleted = false;
 }
-  
-  
-  
-public Content getContent(){
 
+public boolean gethasCont(){
+return hasCont;
+}
+
+public Content getContent(){
 return content;
 }
 
-public void deleteContent(){
-
+public void deleteConten(){
+hasCont=false;
+deleted=true;
 content=null;
 }
 
-
-public String toString(){
-
-  return content.toString();
-
+public boolean getDeleted(){
+return deleted;
 }
-
-
+public String toString(){
+if(content != null)
+return getContent().toString();
+else return " ";
+}
+public String accept(SearchPredicate sp){
+return sp.analuze(this);
+}
 }

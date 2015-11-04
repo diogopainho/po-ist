@@ -1,74 +1,43 @@
-package calc; 
-public class Reference extends Content{
+package calc;
 
+public class Reference extends Content {
 
+private Cell ref_cell;
 private String ref;
 
-private int col=-1;
+public Reference(Cell c, String r){
+ref=r;
+ref_cell = c;
 
-private int line=-1;
 
-private Cell[][] LaTable=null;
-
-public Reference(String _ref){
-
-super();
-ref=_ref;
-String delims=";";
-String[] tokens= _ref.split(delims);
-line=Integer.parseInt(tokens[0]);
-col=Integer.parseInt(tokens[1]);
-//LaTable=table;
-
+if(c.gethasCont()==false || c.getContent().getInvalid())
+super.setInvalid(true);
+else this.setInt(ref_cell.getContent().getInt());
 }
 
-
-
-public int getCol(){
-return col;
-}
-
-public int getLine(){
-return line;
-}
-
-
-public void setCol(int _col){
-col=_col;
-}
-
-public void setLine(int _line){
-line=_line;
+public void setRef(String s){
+ref=s;
 }
 
 public String getRef(){
 return ref;
 }
 
-public void  setRef(String _ref){
-ref=_ref;
+public Cell getRefCell(){
+return ref_cell;
 }
 
-public Cell refGetCell(){
-Cell c=null;
-return c;//getCell(getLine(), getCol());
+public void setRefCell(Cell c){
+ref_cell = c;
 }
 
 public String toString(){
-return " = "+ref;
+if(super.getInvalid()){
+return "#VALUE" + "=" + ref;
+}else {
+if (ref_cell.getContent() != null)
+return "" + ref_cell.getContent().getInt() + "=" + ref;
+else return ref_cell.toString();
+
 }
-public String properToString(){
-return "Linha: "+ line + " Coluna " + col;
-}
-
-public Cell[][] getLaTable(){
-return LaTable;
-}
-
-public void setLaTable(Cell[][] table){
-LaTable=table;
-}
-
-
-
 }
